@@ -1,0 +1,126 @@
+package WeiTest.java;
+import java.util.*;
+public class HomeWork {
+	public static void main(String[] args) {
+		System.out.println("第001题：输入3个学生的姓名，然后输出姓名是3个字并且姓李的学生的姓名。");	
+		System.out.println("第002题：要求用户输入一句话，统计这句话中出现的(我)的次数。");	
+		System.out.println("第003题：输出1921年5月4号是星期几？（已知1900年1月1日是星期一）。");	
+		System.out.println("第004题：输出你出生那个月的月历（已知1900年1月1日是星期一）。");	
+		System.out.println("第005题：随机选取演讲学生名单，全部显示出来。");	
+		System.out.println("第006题：猜数字游戏：电脑随机生成一个范围的数，去猜是什么数，" +
+				                   "如果猜错会提示正确值的范围，一直到猜对结束，如果猜对，提示猜对了。");			
+		Scanner select=new Scanner(System.in);
+		int s=select.nextInt();
+			if (s==1){
+				Scanner input=new Scanner(System.in);
+				String name[]=new String[3];
+				System.out.println("请输入3个学生的姓名");
+				for (int i=0;i<name.length;i++){
+					name[i]=input.next();
+				}
+				for (int j=0;j<name.length;j++){
+					if(name[j].length()==3&&name[j].indexOf('李')==0){//字符串位置从0开始
+						System.out.println("名字是3个字且姓李的学生姓名是："+name[j]);
+					}
+				}	
+			}
+			if(s==2){
+				Scanner input=new Scanner(System.in);
+				System.out.println("请输入一句话");
+				String word=input.next();
+				int w0=word.length();
+				int w1=word.replace("我","").length();
+				//第一种方法：replace替换，第二种方法substring截取字符
+				int n=0;
+				int m=0;
+				for (int i=0;i<word.length();i++){
+					if(word.substring(i,i+1).equals("我")){
+						n++;
+					}
+				}
+				//第三种方法：截取字符，字符可以用等于
+				for (int j=0;j<word.length();j++){
+					if(word.charAt(j)=='我'){
+						m++;
+					}
+				}
+				System.out.println("这句话中出现的“我”的次数："+(w0-w1));
+				System.out.println("这句话中出现的“我”的次数："+n);
+				System.out.println("这句话中出现的“我”的次数："+m);				
+			}
+			if(s==3){
+				Scanner input=new Scanner(System.in);
+			    System.out.println("请输入年份yy");
+			    System.out.println("请输入月份mm");
+			    System.out.println("请输入日期dd");
+			    int yy=input.nextInt();
+			    int mm=input.nextInt();
+			    int dd=input.nextInt();
+			}
+			if(s==4){			   
+			}
+			if(s==5){	
+				String [] name={"陈子泳","谭兆雄","唐志","廖斯拓","曾令为","杨人梦","王校兴","马潮鑫","蔡子扬","陆云辉",
+					                    "尹智强","邓俊涛","杨文祥","江文涛","刘奎","陈全","罗俊曦","黄泽伟","李训阳","郭梓锋"};
+				Random r=new Random();
+				String sum;
+				System.out.println("演讲名单如下：");		
+				for(int i=0,j=0;i<name.length;i++,j++){
+					int b=r.nextInt(name.length);
+					if(b>=j){
+						sum=name[i];
+						name[i]=name[b];
+						name[b]=sum;
+						System.out.println(i+1+"："+name [i]);				
+					}else{
+						i--;	j--;				 
+					}			
+				}			   
+			}
+			//第二种方法：
+				Random a = new Random();
+				String b[]={"陈子泳","谭兆雄","唐志","廖斯拓","曾令为","杨人梦","王校兴","马潮鑫","蔡子扬","陆云辉",
+						        "尹智强","邓俊涛","杨文祥","江文涛","刘奎","陈全","罗俊曦","黄泽伟","李训阳","郭梓锋"};
+				String c[] = new String[20];
+				int d,n,m=0;
+				for(;;){
+					n=0;
+					d=a.nextInt(20);
+					for (int i=0;i<c.length;i++){
+						if (b[d].equals(c[i])){
+							n=1;
+							break;
+						}
+					}
+					if (n==0){
+						c[m]=b[d];
+						m++;
+					}
+					if(m==20){
+						break;
+					}  		  
+				}
+				System.out.println("演讲名单排序如下：");
+				for (int j=0;j<c.length;j++){
+				System.out.println((j+1)+"："+c[j]);
+			} 
+			if(s==6){
+				Scanner input=new Scanner(System.in);
+				int m6=(int)(Math.random()*91+10);
+				System.out.println("------猜数字游戏-------");
+				System.out.println("电脑随机生成了一个10到100之间的整数，请猜：");
+				int n6=input.nextInt();
+				while(true){
+					if(n6==m6){
+						System.out.println("恭喜，猜对了");
+						break;
+					}else if(n6>m6){
+						System.out.println("猜的数大了");       
+					}else{
+						System.out.println("猜的数小了");    
+					}
+  		    	n6=input.nextInt();
+				}	
+			}  	  		
+	}
+}

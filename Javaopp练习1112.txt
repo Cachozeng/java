@@ -1,0 +1,146 @@
+import java.util.*;
+public class Practice {
+	public static void main(String agre[]){
+		System.out.println("第01题：类与对象练习题。");	
+		System.out.println("第02题：创建对象问题数量及赋值问题");	
+		System.out.println("第03题：继承与多态问题。");	
+		Scanner select=new Scanner(System.in);
+		int s=select.nextInt();
+		if (s==1){
+			A a=new A();
+			A aa=new A();
+			B a2=new B();
+			B b=new B();
+			System.out.println(a.A(aa));//A类A(A)->A
+			System.out.println(a.B(a));//A类B(A)->B
+			System.out.println(a2.A(a));//B类A(A类)->D
+			System.out.println(a2.B(a2));//B类B(B) ->A and B
+			System.out.println(aa.A(a));//A类A(A) ->A
+			System.out.println(aa.B(a));//A类B(A) ->B
+			System.out.println(b.B(b));  //B类B(B) ->A and B
+			System.out.println(b.A(a)); // B类A(A) ->D
+		}
+	}
+}
+//第01题：类与对象练习题。
+class A{
+	public String A(A a){
+		return "A";
+	}
+	public String B(A a){	
+		return "B";
+	}
+}
+class B{
+	public String B(B b){
+		return "A and B";
+	}
+	public String A(A a){
+		return "D";
+	}
+}
+
+/*
+	A a=new B(); //子类B创建了一个对象赋给父类A
+	A a2=new B();//子类B转成父类，实际对象是B类
+	B b=new B();
+	C c=new C();
+	D d=new D();
+	B b2=new B();
+	A d2=c;
+	B c2=(B)b;	
+    //System.out.println(a2.A(a));
+	//编译时首先从父类A中找A方法（a2前是A),其中a是参数， return"A"
+	//而运行时发现a2实际是B类的对象,所以从B类找,        return"D"
+	//System.out.println(a2.A(b2));
+	// A类里面A(B类型) ->A类里面A(A类型)->B类里面A类型(A类型) ->D                                 
+    //System.out.println(a2.A(c2));	//    ->D
+    //System.out.println(a2.A(c));      //    ->D
+    //System.out.println(a2.A(d));
+	// A类A(D类型)找到了，然后去B类找A(D类型),没找对，所以直接父类。->C
+    //System.out.println(a2.A(a2));
+	// A类A(A类型)                                 ->D
+    //System.out.println(a2.B(b2));
+	// A类B(B类型) ->A类里面B(A类型) ->B类里面B(A类型) ->
+    //B里面没有，从父类找                     ->B and D
+    //System.out.println(a2.B(c2));
+	// A类B(B类型)                           ->B and D
+     //System.out.println(a2.B(d2));
+	// A类B(A类型)->B类里面B(A类型) ->B and D
+    //System.out.println(a2.B(c));
+    // A类B(A类)   ->B类里面B(A类型) ->B and D
+    System.out.println(a2.B(b));
+     //A类B(B类)                              ->B and D
+    System.out.println(a2.B(a));
+    //A类B(A类)                               ->B and D
+	}
+}
+class A{	
+	public String B(D d){	
+		return "B";
+	}
+	public String A(D d){	
+		return "C";
+	}
+	public String B(A a){	
+		return "B and D";
+	}
+	public String A(A a){
+		return "A";
+	}
+}
+class B extends A {
+	public String B(B b){//与父类重载
+		return "A and B";
+	}
+	public String A(A a){//与父类重写了
+		return "D";
+	}
+	public String A(B b){
+		return "A and D";
+	}
+}
+class C extends A{}
+class D extends B{}
+*/
+/*类与对象练习：
+public class test {
+	public static void main(String agre[]){
+
+*/
+ /*创建对象问题：
+		c c1=new c(8);//创建一个c对象
+		b b1=new b();//创建两个c对象,一个b对象
+		b1=new b(c1);//创建一个b对象,1+4个对象
+		//如果对此注释掉，对C类只创建了5个对象（重新对c1进行创建2个c(int c)）
+		System.out.println(b1.c);//调用B类b(c)方法参数8,然后调用c类c(int c) ->8+1+1=10(c++)
+		System.out.println(c1.c);//c1先调用C类c(int c),8+1+1然后c1调用B类b(c b)中c++,10+1=11
+	}
+}
+class b{
+	int c=5;
+	c b=new c();
+	c a=new c(c);
+	b(){System.out.println(1);
+		c++;b=new c();b=a;this.a=new c(c);
+		}
+	b(c b){System.out.println(2);
+		a=b;
+		c=b.c++;
+		}
+}
+class c{
+	int c=10;
+	c(){System.out.println(3);
+		c++;
+	}
+	c(int c){System.out.println(4);
+	this.c+=c;this.c=++c+1;
+	//this.c=c*2;
+	}
+}
+/*运行之后的最终结果：
+b1.c的值是多少？10
+c1.c的值是多少？ 11
+整个执行过程中共创建了多少个b类的对象(2个)和多少个C类的对象（7个）
+*/

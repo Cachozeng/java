@@ -1,0 +1,516 @@
+package WeiTest.java;
+public class Topic {
+	public static void main(String[] args) {	
+		//Person b=new Person(2);//调用构造方法对应创建时是否含参数。
+		//Person c=new Person(2,3);
+		//Person d=new Person("小明",10,'男',"a1223");		
+		//b.name="小明";
+		//b.setName("李某某");
+		//b.setName("李b某");		
+		//System.out.println(d.getName());
+		//b.age=12;
+		//b.sex='男';
+		//c.name="小李";
+		//c.age=b.age*2;
+		//c.sex=b.sex;
+		//c.sex='女';
+		//c.setName("小红");
+		//c.setAge(32.2);
+		//System.out.println(c.setAge());		
+		//student a=new student();
+		//System.out.println(a.a());
+		//System.out.println(a.c());
+		//System.out.println(a.a);
+		//a.b();
+	    //person2.getInfo();
+		//person2.a.c();	
+		/*System.out.println(person1.num);
+		person1.a();                 
+		Math.random();  //静态方法，工具类，字体为斜体。*/ // 知识点4）
+		/*person.d(); 
+		System.out.println(person.num); //静态变量或者方法可以在不创建对象时就可以访问。
+		person a=new person(); //每次创建对象的时候num都会加1，可以知道总共创建了多少次对象
+		person b=new person();
+		new person();
+		System.out.println(person.num); //可以通过类名.变量访问。
+		System.out.println(a.num);
+		System.out.println(b.num);
+		System.out.println(a.num2);
+		System.out.println(b.num2);
+		a.b();*/
+		/*
+		Random a=new Random();
+		int b=a.nextInt(4);//0,1,2,3
+		FK m=new FK();
+		switch(b){
+		case 0:
+			m=new FK();
+			break;
+		case 1:
+			m=new FK_SZX();
+			break;
+		case 2:
+			m=new FK_TZX();
+			break;
+		case 3:
+			m=new FK_CFX();
+			break;
+		default:
+			break;
+		}
+		m.bx();//多态，编译的时候无法确定最终执行的是哪一个方法。
+//步骤:1.子类重写父类的方法;
+//2.定义方法时,把父类类型作为参数类型,调用方法时,把父类或子类的对象作为参数传入方法
+//3.运行时,根据实际创建的对象类型动态决定使用哪个方法.
+//一个类最好弄一个无参的构造方法,因为当这个类作为父类被继承时,
+//子类开始在第一行默认会调用父类的默认无参的构造方法
+		new Animal();
+		new Dog();
+		new Animal().sing();//匿名对象。一边很少使用
+		Animal a=new Animal();
+		a.sing();
+		Dog b=new Dog();
+		b.sing();
+		Cat c=new Cat();
+		c.sing();
+		c.catchMouse();
+		Animal a2=c;  //向上转型，把Cat中的变量赋给a2变量
+		a2.sing();//会调用Cat中sing()
+		Cat c2=(Cat)a;//向下转型，强制类型转换
+		c2.catchMouse();//不能成功，因为上面真实放的是a变量，是Animal
+		//为什么编译时不报错，而实际运行会报错：
+		Animal a3=b;
+		Cat c3=(Cat)a;
+		c3.catchMouse();//通过父类，两个子类可以转换，但是运行还是会报错。
+		//Person a=new Student(); //父类的变量，可以存放子类的对象
+		//Person b=new Teacher();
+		//System.out.println(b instanceof Teacher);
+		//Student b=(Student) new Person();
+		//Student c=(Student)a;
+ */
+	}
+}
+
+/*class Person {
+	private String name;
+	private int age;
+	char sex;
+	String password;
+	//Person(){}   //默认的构造方法，名字必须和类一样
+	public Person(){   //自己写的构造方法，创建对象时会处理大括号里面
+    System.out.println("我是构造方法");  
+	}
+	public Person(int a,int b){
+		System.out.println("我是构造方法2");  
+	}
+	public Person(int a){
+		System.out.println("我是构造方法3");  
+	}
+	{
+		System.out.println("我是构造方法总称"); //构造代码块	
+	}
+	public Person(String a,int b,char c,String d){
+		name=a;
+		age=b;
+		sex=c;
+		password=d;
+	}
+	public String getName(){   //获取私有的姓名
+		return name;
+	}
+	public void setName(String a){  //设置姓名
+		if (a.length()!=3) return;
+	//void 的方法体中可以写return,表示返回空
+		if(a.indexOf('李')!=0) return;
+    //两个if排除到姓名长度为3，是以姓李开头
+		this.name=name;
+		return;
+	}
+	public int getAge(){         //获取私有的年龄
+		return age;
+	}
+	public void setAge(int e){
+		this.age=age;
+		return;
+	}
+	public void setAge(double e){
+		age=(int) e;
+	}
+	public void sleep(String a){
+		System.out.println(name+"在"+a+"睡觉");
+	}
+	public void printinfo(){
+		
+	}
+	public int eatll(){
+		int a=9;
+		return a;
+	}
+	public void dfsss(int b,int c,String d ){		
+	}
+	public char ddfsd(String a){
+		return 'A';
+	}
+}
+*/
+/*
+class person{
+	public static int num=0;
+	public int num2=0;
+	public person(){    //第一个构造方法
+		//this(77);   //调用第二个构造方法
+		num++;
+		num2++;
+		d();//构造方法可以访问静态方法
+	}
+	public person(int a){   //第二个构造方法
+		this();   //调用第一个构造方法
+		System.out.println(a);
+		}
+	public void a(){
+		System.out.println("111");
+		System.out.println(c("我"));//打印类调用只能调用返回值的方法		
+		//b();  //被调用方法有打印的，直接调用
+	}
+	public void b(){
+		a();
+		System.out.println("222");	
+	}
+	public String c(String e){
+		return e;		
+	}
+	public static void d(){
+		System.out.println(num);    //可以访问静态变量
+		//System.out.println(num2); //不能访问普通变量	
+		System.out.println("111");
+		//c();                                   //只能调用静态方法,不能调用动态方法；  
+	}
+}
+class person1{
+	private person1(){}
+	public static int num=0;
+	public static void a(){}
+	public void b(){}		
+}
+class person2{
+	static{
+		System.out.println("aaa");		
+	}
+	private person2(){}
+	private static person2 a=new person2();
+	static person2 a=new person2();  //只存在一个对象，但是可以访问其他方法
+	public void b(){}                          //所以最终其他方法可以被使用，但是只存在一个对象
+	public static void c(){};	
+	public static person2 getInfo(){   
+		return a;                               //这个方法仅仅是让能够访问私有化得对象。
+	}
+}
+student is a person：继承：student extends person
+class person3{
+	String name="某某某";
+	int age=99;
+	int a=8;//3
+	public void b(){	a=0;}
+	public void b(int a){a=a;this.a=a;}
+	public void b(int a,int b){this.a=a+b;}
+	public person3(){
+		System.out.println("aaa");
+	}
+	public person3(int a){
+		System.out.println("ccc");		
+	}
+}
+class student extends person3{ //继承后有4个属性
+	int a=5; //0
+	int score=super.a;  //a或this.a,而super.a是父类中的变量a
+	String class2="软件一班";
+	public student(){          //子类的构造函数中默认在第一行去调用父类参数为空的构造函数
+		//如果要自己选择调用父类某个构造函数，可以用super构造函数（参数）
+		//super(5);               //就可以调用父类的有参数构造函数
+		System.out.println("bbb");
+	}
+	public void b(){a=0;} //如果父类中的方法和子类中方法名一样时，会调用子类中方法。
+	public void b(int a){super.a=a;}
+	public int a(){
+		b();    //直接调用父类中的方法
+		super.b();
+		this.b(2);
+		b(3);
+		super.b(5);
+		this.b(3,4);//在子类找不到去父类找
+		super.b(1,2);
+		int a=this.a+super.a;
+		a=a+super.a;		
+		return a;
+	}
+	public int c(){
+		return super.a;
+	}
+}
+public class Test4{
+	public void b1(){}
+	protected void b3(){}
+	void b4(){}
+	private void b2(){}
+}
+*/
+/*
+1）MyEclipse：1.先创建Java project、然后创建包、类。
+   2.更改字体：Window->preferences->appearance->colors and fonts->java。
+   3.更改文件名：先要在文件内改类名，然后在外部点击后F2。
+本身文件所在包名在最上面，导包动作在其下面
+方法的四种类型：无参无返回、无参有返回、有参有返回、有参无返回
+产生随机数有两种方法：
+import java.util.Random;
+Random a=new Random();
+int b=a.nextInt(10);
+第一种产生整数：产生一个随机数b,这个随机数大于等于0，小于10；
+a.nextInt(8)+12;--12到19之间的整数
+第二种：不用导包，直接用Math.random()，double类型的数字，大于等于0.0，小于1.0；
+求20到50之间 (int)(Math.random()*31+20)
+	//Random n=new Random();
+	//int m=n.nextInt(10)+5;                 //[5,14] 
+    //int m= (int)(Math.random()*10+5);  //[5,14] 
+	//int m=n.nextInt(4)+13;                 //(12,16] 
+    //int m= (int)(Math.random()*4+13);  //(12,16] 
+	//int m=n.nextInt(155)+45;                    //[45,200) 
+    //int m= (int)(Math.random()*155+45);  //[45,200) 
+	//int m=n.nextInt(21)+57;                   //(56,78) 
+    //int m= (int)(Math.random()*21+57);  //(56,78) 
+    //思路：先变成两边取等时，两数间差+1当成乘值，最小值当成加值
+//对象在创建的时候，拷贝了一份类这个模板的内容，
+//对象才拥有属于自己的变量和方法，对象可以访问对象当中的变量和方法。
+//面向对象编程的三个特征：1.封装：将类的属性弄成私有，再提供一些方法，
+//让外面可以设置和访问这个属性（取值方法、赋值方法）
+//一般有两个方法，一个用于获取，一个用于设置限制条件。
+//this关键字：指代对象(谁调用我就指向谁)本身，可以用来处理成员变量和参数变量重名的情况。
+//方法重载：一个类中可以有相同名字，但参数不同的多个方法。
+//构造方法：创建对象的时候才会调用的方法。
+//没有写构造方法，系统会默认一个构造方法：类名 () {};
+//如果自己写了构造方法，则使用写了的构造方法。
+//构造方法一般是对属性进行初始化。
+//构造方法可以重载。
+//构造代码块：也是在创建对象的时候才调用，是多个构造函数相同的部分放在一起的。
+
+1）构造方法和普通方法相互之间的调用：
+    //方法里面不能写方法
+    1.构造方法可以调用普通方法(可以放在方法内任意位置)；
+    2.普通方法之间可以互相调用(可以放在方法内任意位置)；
+    3.构造方法之间可以互相调用，但是必须用this();，而且必须放在方法的第一个语句；
+    4.普通方法可以调用静态方法或者变量。
+    5.静态方法只能访问静态方法或者静态变量。
+   2）static是一个修饰符，表示静态，可以用于修饰成员变量和成员方法。
+      当它修饰变量的时候：这个变量是一个公共变量，只有一份。
+      可以被类名.对象直接调用，类变量比普通变量多了一种访问方式。
+     当它修饰方法的时候：只能访问静态变量。
+     静态变量或者方法可以在不创建对象时就可以访问。
+  3）让一个类不能在类外部被创建对象？：将构造方法设置成私有：private 类名();
+  4）java有23种设计模式：
+   1.单例设计模式，解决一个类只在内存中存在一个对象。
+      方法1：首先将构造方法私有化，然后在本类中创建一个公有静态对象。
+      方法2：首先将构造方法私有化，然后在本类中创建一个私有的静态对象，对外界提供访问这个私有变量的方法。
+  5）静态代码块：（对照构造代码块）   格式：static{静态代码块中的执行语句}
+  6）面向对象编程的第二个特征：继承  （第一个是封装）
+   1. 继承可以提高代码的复用性，简化代码
+   2. 两个类之间如果具有：a is b 的关系，那么就存在继承的关系，a是子类，b是父类
+   3.父类也叫超类或基类；子类也叫导出类。
+   4.java只能单继承。
+   5.在子类中访问父类的变量，用super.变量名（解决变量名相同情况）
+   6.在子类中访问自己的变量，直接变量名或者this.变量名
+   7.子类不能继承父类当中私有的变量和方法
+   8.子类继承了父类中的方法。
+   9.方法的重写：子类中可以存在跟父类中一模一样的方法。也可以用super.方法名访问父类中方法。
+      这个叫方法的重写，子类中的方法会覆盖掉父类中的那个方法。
+ 10.当父类和子类存在同名的变量或者方法时，外部直接从子类访问不到父类的变量和方法。 
+      只能是在子类中通过super.变量或者super.方法访问父类   
+ 11.父类的构造函数也可以被子类继承 :先执行父类再执行子类     
+6）访问方法权限的修饰符有4种：public、protected、不写default、private 从大到小
+                     public        protected    default    private
+     同一个类          ok               ok             ok          ok
+     同一个包          ok               ok             ok          
+     子类                 ok               ok            
+     不同包中          ok    
+     1）面向对象编程的特征之三：多态
+    1.对象转型：向上转型，子类可以自动转成父类；
+        向下转型，父类不能自动转成子类，强行转化。
+    2.instanceof是java的关键字，用来测试左边的对象是否是右边类的实例，
+        如果是则返回ture,否则返回false。
+    3.多态的体现：父类引用指向子类对象；
+        多态前提：两个类之间有继承关系，必须存在重写。
+        多态的好处：可以提高程序的可扩展性；多态特点：
+        编译期间：参考引用型变量所属的类中是否有调用的方法。(如果没有就会报错)
+        运行期间：参考对象所属类中是否有调用的方法。
+   2）匿名对象：没有名字的对象。
+     1.使用方法：对对象当中的方法只调用一次时，可以使用；作为方法的参数传递
+   3）一个特殊的类：Object类：它是java里面所有对象的直接或者间接父类，
+        根父类（基类）它里面所有功能，其他类的对象应该都是具备的。
+        当定义一个新的类时，如果没有指明继承于某个类，那它默认继承于object类。
+   4）1.让一个类不能被继承；2.让一个变量不能被修改；（变成了常量，修改不了）
+       3.让一个方法不能被重写。使用final关键字
+      1）abstract关键字:抽象,修饰符,可以修饰类和方法.
+   1.抽象类:当我们多个类存在相同的功能,但是功能的主体不同,
+       这时我们进行向上抽取,只抽取功能的定义,不抽取功能的主体,然后把功能的定义写出一个抽象类.
+   2.抽象方法:是一种特殊的方法,只有声明,没有实现.格式:abstract void fun();
+      如果一个类含义抽象的方法,那么这个类就是抽象类.
+   3.抽象类的特点:1)抽象方法一定要在抽象类中;2)抽象类和抽象方法必须要被abstract修饰。
+      3)抽象类不能被创建对象;4)抽象类中的抽象方法由子类去重写。
+      5)抽象类中也可以有普通的方法;6)抽象类中也可以没有抽象方法;
+      7)如果子类只重写父类的部分抽象方法，那么子类还是抽象类。
+   4.抽象类和普通类有什么区别.
+      1)抽象类不能创建对象;2)抽象方法只能在抽象类中.
+2) 接口:interface,指提供给别人调用的方法或者函数.
+  1.定义接口的语法:interface 接口名{变量     方法},大括号里为空也可以
+  2.接口是对行为的抽象,抽象类是对事物,实体的抽象.
+  3.接口的特征:1)接口中的变量默认是public static final的变量(共有,静态的常量)
+     2)接口中的方法默认都是public abstract的方法;
+     3)类可以实现接口:class 类名 implements 接口名{        }
+     4)类可以实现多个接口:class 类名  implements 接口1,接口2{       }
+  4.抽象类中可以部分实现接口中的方法;普通类必须要全部实现接口中的全部方法.
+  5.接口和接口可以是继承关系,既可以单继承也可以多继承
+3) 抽象类是用来定义一个类体系的基本功能(共有的功能)
+     接口是用来定义一个类体系的扩展功能.(通过implements去确定是否实现)
+4) 面向过程的编程 c  ->面向对象的编程java  ->面向接口的编程 ->面向接口的编程
+    项目:定义好抽象类和接口
+    abstract class person{ //基本信息......}
+    abstract class airplane{//基本信息 .....}
+    interface learn{//扩展.....}
+    interface fight {//扩展......}
+    class student extends person implements learn,fight{//.......}   
+5) 工作:软件产品:四个模块,登录,注册,聊天,添加好友.
+     需要调用接口:聊天模块是a公司提供的(库文件,库包,工具包,接口文档)
+6) 分层思想:上层 ... 下层
+     ....应用软件->...中间件->...操作系统->...硬件                           
+*/
+class Person{
+	void a(){
+		System.out.println("person=aaa");
+	}
+}
+class Student extends Person{
+	void b(){
+		System.out.println("student=bbb");
+	}
+}
+class Teacher extends Person{
+	void c(){
+		System.out.println("teacher=ccc");
+	}
+}
+class Animal{
+	void sing(){
+		System.out.println("唱歌");
+	}
+}
+class Dog extends Animal{
+	void sing(){
+		System.out.println("汪汪汪唱歌");		
+	}
+}
+class Cat extends Animal{
+	void sing(){
+		System.out.println("喵喵喵唱歌");				
+	}
+	void catchMouse(){
+		System.out.println("抓一只老鼠");				
+	}
+}
+/*俄罗斯方块的例子：
+class FK{
+	void bx(){
+		System.out.println("变形");
+	}
+}
+class FK_SZX extends FK{
+	void bx(){
+		System.out.println("山字型方块在变形");
+	}
+}
+class FK_TZX extends FK{
+	void bx(){
+		System.out.println("田字型方块在变形");
+	}
+}
+class FK_CFX extends FK{
+	void bx(){
+		System.out.println("长方形方块在变形");
+	}
+}
+*/
+abstract class person{  //不能创建对象
+	int age;
+	void a(){		
+	}
+}
+abstract class person2{  //抽象类只有被继承后才能用
+	int age;
+	abstract void a() ;//抽象方法没有实现,没有{},如果方法是抽象方法,那么类必须是抽象的
+	abstract int b(int a);
+	int c(){return 1;}
+}
+class student extends person2{
+//继承后的子类也是抽象类,或者对父类的所有抽象方法进行重写,子类才能不是抽象方法
+	void a(){}
+	int b(int a){return a;}
+}
+abstract class 上帝{
+	abstract void 真();
+	abstract void 善();
+	abstract void 美();
+}
+class 人类 extends 上帝{
+	void 真(){};
+	void 善(){};
+	void 美(){};
+}
+interface 拜访{
+	void go();
+	void take();
+}
+interface a{void fun1();}
+interface b{void fun2();}
+interface c extends a,b{}
+class person1{}
+class student1 extends person implements a,b{
+	public void fun1(){}
+	public void fun2(){}
+}  //类单继承类多实现接口
+class 小明 implements 拜访{
+	public void go(){
+		System.out.println("走路");
+		}
+	public void take(){
+		System.out.println("带水果");
+	}
+}
+class 小芳 implements 拜访{
+	public void go(){
+		System.out.println("坐车");
+		}
+	public void take(){
+		System.out.println("带礼物");
+	}
+}
+abstract class 小曾 implements 拜访{//如果接口里面的方法没有全部实现,那么类必须是抽象的
+	public void go(){
+		System.out.println("坐车");
+		}
+}
+//方式一:
+interface a1{
+	void fun1();
+	void fun2();
+}
+class student2 implements a1{
+	public void fun1(){}
+	public void fun2(){}
+}
+//方式二:
+abstract class a2{
+	abstract void fun1();
+	abstract void fun2();
+}
+class student3 extends a2{
+	public void fun1(){}
+	public void fun2(){}	
+}
+
