@@ -1,7 +1,7 @@
 @echo off
 
 f:
-cd F:\SoftwareTest\zeng\04 JAVA
+cd F:\SoftwareTest\Github\04 JAVA
 
 git init
 git remote add gitee https://gitee.com/Cacho/Java.git

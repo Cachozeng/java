@@ -1,0 +1,178 @@
+package Whitebox.java;
+public class Test1 {
+	public static void main(String[] args) {
+		System.out.println(example(4,3));
+	}
+	public static int example(int a,int b){
+		int k=0; //语句1        //路径a
+	    if(a>0 && b>0){   //如果&& 写错称 ||,语句覆盖不能找出问题  //判定1  //条件1,2
+			k=a+b+10; //语句2   //路径b
+		}else{
+			k=a+b-10;//语句3    //路径c
+		}                              
+		if(k<0){    //判定2   //条件3   
+			k=0;//语句4           //路径d
+		}                             //路径e
+		return k;//语句5       //路径f
+	}
+}
+//语句覆盖:1.a=4,b=3 预期结果:k=17  会执行语句1,语句2,语句5   
+//            2.a=0,b=-3 预期结果:k=0, 会执行语句1,语句3,语句4,语句5
+//判定覆盖:p1(a>0&&b>0)   p2(k<0) 
+//1.a=4,b=3 预期结果:k=17    P1(T) P2(F)  2.a=0,b=-3 预期结果:k=0, P1(F) P2(T) 
+//条件覆盖:c1 a>0,c2 b>0  c3 k<0 
+//1.a=4,b=3 预期结果:k=17   C1(T)C2(T)C3(F)  2.a=4,b=3 预期结果:k=0   C1(F)C2(F)C3(T)
+//判定-条件覆盖:p1(a>0&&b>0)   p1(k<0)    :c1(a>0),c2 (b>0)  c3 (k<0)
+//1.a=4,b=3 预期结果:k=17  p1(T)   p2(F)    :c1(T),c2 (T)  c3 (F)
+//2.a=0,b=-3 预期结果:k=0,  p1(F)   p2(T)    :c1(F),c2 (F)  c3 (T)
+//条件组合覆盖:c1 a>0,c2 b>0 C1(T)C2(T) ,C1(T)C2(F) ,C1(F)C2(T) ,C1(F)C2(F)  c3 k<0 :C3(T)  ,C3(F)
+//1.a=4,b=3 预期结果:k=17  C1(T)C2(T)  C3(F) 2.a=0,b=-3 预期结果:k=0, C1(F)C2(F)  C3(T)
+//3.a=4,b=0 预期结果:k=0   C1(T)C2(F)  C3(T) 4.a=0,b=3 预期结果:k=0, C1(F)C2(T)  C3(T)
+//路径覆盖:1.a-b-d-f  (不可能) 2.a-b-e-f(a=4,b=3)  3.a-c-d-f(a=10,b=-2)   4.a-c-e-f(a=12,b=-1) 
+import java.util.*;
+public class Test2 {
+	public static void main(String[] args) {
+		Scanner input=new Scanner(System.in);
+		System.out.println("请输入三角形3条边");
+	    int a=input.nextInt(),b=input.nextInt(),c=input.nextInt();
+	    if(a+b>c&&a+c>b&&b+c>a){
+	    	if(a==b||b==c){
+	    		if(a==c){
+	    			System.out.println("等边三角形");
+		    	}else{
+	    			System.out.println("等腰三角形");	
+	    		}
+	    	}
+		else if(a==c){
+	    		System.out.println("等腰三角形");			
+		}	
+	    	else if(a*a+b*b==c*c||b*b+c*c==a*a||a*a+c*c==b*b){
+	    		System.out.println("直角三角形");	
+	    	}
+	    	else{
+	    		System.out.println("普通三角形");	
+	    	}
+	    }else{
+	    	System.out.println("不能构成三角形");	
+	    }	    
+	}
+}
+2.画出这段程序的控制流图
+3.计算圈复杂度和导出独立路径
+
+//首先右键java project名 点击最后一栏properties,找到第三行java build path
+//进去后第三列 libraries,找到第四行 add Libraries,进去找到第二行 JUnit 4,添加后完成
+//右键要测试的类,new ->JUnit Test case,创建对应的JUnit测试类 next 选择需要测试的方法
+//可以勾选需要测试的方法,进入每个方法进行测试方法设计.
+//设计完,运行时,之间右键此文件,run as JUnit Test,会出现测试结果
+//只有标注@Test的方法才是测试方法,标注:是JDK5以后的版本才有的特性.
+//标注要保证所标注的方法使用public void 修饰,标注的方法不能带参数
+//在方法的前面可以有标注,比如:@Test ,@Ignore用来表明忽略这个方法
+//@Before 用来表明任何一个测试方法在执行之前必须要先执行这个方法.
+//@After   用来表明任何一个测试方法在执行之后必须要执行这个方法.
+//@BeforeClass 用来表明在整个类的所有测试方法运行前运行一次
+//@AfterClass 用来表明在整个类的所有测试方法运行后运行一次
+//@Before/AfterClass 标注的方法要用public static void
+//限时测试: @Test(time out =1000) 单位毫秒
+//测试异常:如果一个方法预测肯定要抛出某一种异常,然后,实际结果是
+//没有抛出异常,那这个也是一个缺陷.
+//@Test(expected =ArithmeticException.class)
+//运行器:Runner: 复杂调用你的测试代码.运行器有很多类型的运行器
+//可以指定某种运行器运行你的代码,不指定就是默认的运行器TestClassRunner
+//如果要指定:@RunWith(TestClassRunner.class)
+//参数化的运行器@RunWith(Parameterized.class)
+//打包测试:对一个类的测试,只写一个测试类是不可能的,有可能写很多个测试类来测试某个类
+//这些测试类,可以进行打包:@RunWith(Suite.class) @Suite.SuiteClasses(){}
+//PMD代码静态检查的工具(静态白盒测试工具之一)
+//测试覆盖率:度量测试是否完整,充分的一个手段. 
+//白盒:逻辑覆盖率  黑盒:功能覆盖率,需求覆盖率
+//覆盖率=(至少被执行一次的item数)/item的总数  (item项目)
+//要考虑多种覆盖率的指标,多种指标综合考虑,不要追求100%的覆盖标准
+package Whitebox.java;
+import static org.junit.Assert.*;
+import java.util.Arrays;
+import java.util.Collection;
+import org.junit.*;
+import org.junit.internal.runners.*;
+import org.junit.runner.RunWith;
+import org.junit.runners.Parameterized;
+//import org.junit.runners.Suite;
+import org.junit.runners.Parameterized.Parameters;
+    @RunWith(Parameterized.class)
+    //@RunWith(TestClassRunner.class)
+public class calTest {
+    private static cal a=new cal();
+    private int param;
+    private int result;
+    @Parameters //提供参数
+    public static Collection data(){
+    	return Arrays.asList(new Object[][]  {  {0,0},{2,4},{9,81}  });   		
+    }
+    public calTest(int param,int result){
+    	this.param=param;
+    	this.result=result;
+    }
+    @Test
+    public void Square0(){
+		a.clear();
+		a.square(param);
+		assertEquals(result,a.getResult());
+    }
+	/*@Test //每个测试方法前一定要有
+	public void testAdd() {
+		a.add(2);
+		a.add(3);
+		assertEquals(5,a.getResult()); //断定括号里前面值等于后面
+	}
+	@Test
+	public void testSubstr() {
+		a.substr(2);
+		a.substr(-2);
+		assertEquals(5,a.getResult());		
+	}
+	@Ignore
+	public void testMulti() {
+	}
+
+	@Test
+	public void testDivide() {
+		a.add(4);
+		a.divide(2);
+		assertEquals(2,a.getResult());			
+		for(;;);
+	}
+
+	@Test
+	public void testSquare() {
+	}
+
+	@Test
+	public void testGetResult() {
+	}
+
+	@Test
+	public void testClear() {
+	}
+    @Before
+    public void Clear(){
+    	a.clear();
+    }
+    @Test(expected =ArithmeticException.class)
+    public void testdivde(){
+    	a.add(8);
+    	a.divide(0);
+    }*/
+}
+/*
+    import static org.junit.Assert.*;
+    import org.junit.internal.runners.*;
+    import org.junit.runners.*;
+    import org.junit.runners.Suite;
+    import org.junit.Test;
+    import org.junit.runner.RunWith;
+    @RunWith(Suite.class)
+    @Suite.SuiteClasses(){
+    	calTest.class
+    	//calTest2.class
+    }
+    public class AllTest_Cal {}*/

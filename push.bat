@@ -1,6 +1,6 @@
 @echo off
 f:
-cd F:\SoftwareTest\zeng\04 JAVA
+cd F:\SoftwareTest\Github\04 JAVA
 
 git add .
 set /p input=请输入备注信息：
